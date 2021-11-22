@@ -161,6 +161,73 @@ class UnitTestHeadingPID:
                        "Time (s)", "Theta (Degree)")
         # plot the input to the wheels
         self.plot_input(u_r_, u_l_, "Control inputs", "Time (s)", "PWM")
+        
+#     def test2(self, kp, ki, kd):
+#         omega = 0  # initial command
+#         prev_e = 0  # initializing error (TODO, should be theta_ref - theta_0)
+#         prev_int = 0  # initializing integral term
+
+#         err_ = []
+#         theta_hat_ = []
+#         u_r_ = []
+#         u_l_ = []
+
+#         for _ in self.t1:
+#             theta_hat, u_r, u_l = self.sim(
+#                 omega, self.v_0, self.delta_t)  # simulate driving
+
+#             # For plotting
+#             theta_hat_.append(theta_hat)
+#             err_.append(prev_e)
+#             u_r_.append(u_r)
+#             u_l_.append(u_l)
+
+#             # Calculating wheel commands
+#             u, prev_e, prev_int = self.PIDController(
+#                 self.v_0, self.theta_ref, theta_hat, prev_e, prev_int, self.delta_t, kp, ki, kd
+#             )
+
+#             self.v_0 = u[0]
+#             omega = u[1]
+
+#         # plot the theta_hat and the error on theta
+#         self.plot_pose(theta_hat_, err_, "Duckiebot heading (Theta)",
+#                        "Time (s)", "Theta (Degree)")
+        # plot the control inputs
+        # self.plot_input(u_r_, u_l_, "Control inputs", "Time (s)", "PWM")
+
+        # reset everything for simulation wiht noise
+#         self.theta_prev = 0
+#         omega = 0
+#         prev_e = 0
+#         prev_int = 0
+
+#         err_ = []
+#         theta_hat_ = []
+#         u_r_ = []
+#         u_l_ = []
+
+#         # simulate with noise
+#         for _ in self.t1:
+#             theta_hat, u_r, u_l = self.sim_noise(omega, self.v_0, self.delta_t)
+
+#             theta_hat_.append(theta_hat)
+#             err_.append(prev_e)
+#             u_r_.append(u_r)
+#             u_l_.append(u_l)
+
+#             u, prev_e, prev_int = self.PIDController(
+#                 self.v_0, self.theta_ref, theta_hat, prev_e, prev_int, self.delta_t, kp, ki, kd
+#             )
+
+#             self.v_0 = u[0]
+#             omega = u[1]
+
+#         # plot theta with noise and the error on theta
+#         self.plot_pose(theta_hat_, err_, "Theta with noise",
+#                        "Time (s)", "Theta (Degree)")
+#         # plot the input to the wheels
+#         self.plot_input(u_r_, u_l_, "Control inputs", "Time (s)", "PWM")        
 
     def plot_input(self, u_r, u_l, title, x_label, y_label):
         import matplotlib.pyplot as plt
@@ -327,6 +394,69 @@ class UnitTestPositionPID:
                        "Time steps (0.2 s)", "Y (m)")
         self.plot_input(u_r_, u_l_, "Control inputs",
                         "Time steps (0.2 s)", "PWM")
+#     def test2(self, kp, ki, kd):
+#         omega = 0
+#         prev_e = 0
+#         prev_int = 0
+
+#         err_ = []
+#         y_hat_ = []
+#         u_r_ = []
+#         u_l_ = []
+
+#         for _ in self.t1:
+#             y_hat, u_r, u_l = self.sim(omega, self.v_0, self.delta_t)
+
+#             y_hat_.append(y_hat)
+#             err_.append(prev_e)
+#             u_r_.append(u_r)
+#             u_l_.append(u_l)
+
+#             u, prev_e, prev_int = self.PIDController(
+#                 self.v_0, self.y_ref, y_hat, prev_e, prev_int, self.delta_t, kp, ki, kd
+#             )
+
+#             self.v_0 = u[0]
+#             omega = u[1]
+#         # avg_error = np.mean(np.abs(err_)) 
+#         avg_error = np.min(err_) 
+        
+#         # print('{}'.format(avg_error))
+#         # if avg_error > -0.05:
+#         print('Kp: {} |  Kd: {} | Ki:{} | Avg_error:{}'.format(kp, kd, ki, avg_error))
+#         self.plot_pose(y_hat_, err_, "No noise", "Time (s)", "y (m)")
+            # self.plot_input(u_r_, u_l_, "Control inputs", "Time (s)", "PWM")
+
+#         self.theta_prev = 0
+#         self.y_prev = 0
+#         omega = 0
+#         prev_e = 0
+#         prev_int = 0
+
+#         err_ = []
+#         y_hat_ = []
+#         u_r_ = []
+#         u_l_ = []
+
+#         for _ in self.t1:
+#             y_hat, u_r, u_l = self.sim_noise(omega, self.v_0, self.delta_t)
+
+#             y_hat_.append(y_hat)
+#             err_.append(prev_e)
+#             u_r_.append(u_r)
+#             u_l_.append(u_l)
+
+#             u, prev_e, prev_int = self.PIDController(
+#                 self.v_0, self.y_ref, y_hat, prev_e, prev_int, self.delta_t
+#             )
+
+#             self.v_0 = u[0]
+#             omega = u[1]
+
+#         self.plot_pose(y_hat_, err_, "With noise",
+#                        "Time steps (0.2 s)", "Y (m)")
+#         self.plot_input(u_r_, u_l_, "Control inputs",
+#                         "Time steps (0.2 s)", "PWM")
 
     def plot_input(self, u_r, u_l, title, x_label, y_label):
         import matplotlib.pyplot as plt
